@@ -25,6 +25,8 @@ class Path {
     } 
   }
   
+  
+  
   //Parcours l'axe vertical en montant depuis la tuile1 jusqu'à la ligne numéro pointY
   void moveUp(float startPoint, float endPoint, float xyCoordToCheck, BooleanWrapper pathIsValid, BooleanWrapper moveIsValid) {
         PVector coordToCheck = new PVector();
@@ -54,6 +56,7 @@ class Path {
         if (pathIsValid.value)
           _pointsDirectionSwitch = (PVector[]) append(_pointsDirectionSwitch, coordToCheck);
   }
+  
   
   
   //Parcours l'axe vertical en descendant depuis la tuile1 jusqu'à la ligne numéro pointY (= pointY)
@@ -87,6 +90,7 @@ class Path {
   }
   
   
+  
   void moveRight(float startPoint, float endPoint, float xyCoordToCheck, BooleanWrapper pathIsValid, BooleanWrapper moveIsValid) {
     PVector coordToCheck = new PVector();
     for (float coordXLine = startPoint; coordXLine <= endPoint; coordXLine++) {  
@@ -116,6 +120,7 @@ class Path {
   }
   
   
+  
   void moveLeft(float startPoint, float endPoint, float xyCoordToCheck, BooleanWrapper pathIsValid, BooleanWrapper moveIsValid) {
     PVector coordToCheck = new PVector();
     for (float coordXLine = startPoint; coordXLine >= endPoint; coordXLine--) {  
@@ -143,6 +148,7 @@ class Path {
     if (pathIsValid.value)
       _pointsDirectionSwitch = (PVector[]) append(_pointsDirectionSwitch, coordToCheck);
   }
+  
   
   
   boolean isPathValid(PVector coordTile1, PVector coordTile2) {
@@ -185,9 +191,6 @@ class Path {
         if (moveIsValid.value)
           return true;
       }
-      
-      if (pointY == coordTile1.y)
-        continue;
           
           
           
@@ -273,9 +276,6 @@ class Path {
         if (moveIsValid.value)
           return true;
       }
-      
-      if (pointX == coordTile1.x)
-        continue;
           
           
           
