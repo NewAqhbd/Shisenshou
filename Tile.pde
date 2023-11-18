@@ -22,7 +22,8 @@ class Tile {
  }
  
  
- void displayTiles() {
+ 
+ void displayTile() {
    stroke(0);
    strokeWeight(2);
    if(_isVisible == true) {
@@ -38,11 +39,13 @@ class Tile {
  }
  
  
+ 
  boolean isOverTile() {
   if(mouseX >= (_coordinates.x * _widthSize) && mouseX <= (_coordinates.x * _widthSize + _widthSize) && mouseY >= (_coordinates.y * _heightSize) && mouseY <= (_coordinates.y * _heightSize + _heightSize))
     return true;
   return false;
  }
+ 
  
  
  boolean isPressed() {

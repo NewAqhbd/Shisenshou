@@ -5,7 +5,3 @@ class BooleanWrapper {
     this.value = value;
   }
 }
-
-void checkMoveIsValid(BooleanWrapper isValid) {
-  isValid.value = true;
-}

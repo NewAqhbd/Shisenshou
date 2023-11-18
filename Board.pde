@@ -68,10 +68,25 @@ class Board {
   void loopOverTiles() {
   
     if (_selectedTiles.length == 2) {
-      _selectedTiles[0]._isSelected = false;
-      _selectedTiles[1]._isSelected = false;
-      Tile[] newArray = new Tile[0];
-      _selectedTiles  = newArray; 
+      
+      Path pathToCheck = new Path(_selectedTiles[0], _selectedTiles[1]);
+          
+      if (pathToCheck.isPathValid(_selectedTiles[0]._coordinates, _selectedTiles[1]._coordinates) && _selectedTiles[0]._family == _selectedTiles[1]._family) {    
+        _selectedTiles[0]._isVisible = false;
+        _selectedTiles[1]._isVisible = false;
+        printArray(pathToCheck._pointsDirectionSwitch);
+        pathToCheck.drawLines(pathToCheck._pointsDirectionSwitch);
+        Tile[] newArray = new Tile[0];
+        _selectedTiles  = newArray;
+      }
+      else {
+        _selectedTiles[0]._isSelected = false;
+        Tile newSelectedTile = _selectedTiles[1];
+        Tile[] newArray = new Tile[0];
+        _selectedTiles  = newArray;
+        _selectedTiles  = (Tile[]) append(_selectedTiles, newSelectedTile);
+      }
+
     }
   
     for (Tile tile : _tiles) {
@@ -84,19 +99,11 @@ class Board {
         
         if (_selectedTiles.length == 1 && tile._id != _selectedTiles[0]._id && tile._isVisible) {
           _selectedTiles   = (Tile[]) append(_selectedTiles, tile);
-          Path pathToCheck = new Path(_selectedTiles[0], _selectedTiles[1]);
-          
-          if (pathToCheck.isPathValid(_selectedTiles[0]._coordinates, _selectedTiles[1]._coordinates) && _selectedTiles[0]._family == _selectedTiles[1]._family) {    
-            _selectedTiles[0]._isVisible = false;
-            _selectedTiles[1]._isVisible = false;
-            printArray(pathToCheck._pointsDirectionSwitch);
-            pathToCheck.drawLines(pathToCheck._pointsDirectionSwitch);  
-          }
-          
+          tile._isSelected = true;   
         }
         printArray(_selectedTiles);
       }
-      tile.displayTiles();
+      tile.displayTile();
     }
   }
  
