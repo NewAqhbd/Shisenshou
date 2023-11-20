@@ -40,7 +40,6 @@ void keyPressed() {
 void shuffleArray(int[] arr) {
   for (int i = arr.length - 1; i > 0; i--) {
     int j = int(random(i + 1));
-    // Swap arr[i] and arr[j]
     int temp = arr[i];
     arr[i] = arr[j];
     arr[j] = temp;
