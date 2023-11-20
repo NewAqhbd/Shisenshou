@@ -71,27 +71,30 @@ class Board {
       
       Path pathToCheck = new Path(_selectedTiles[0], _selectedTiles[1]);
           
-      if (pathToCheck.isPathValid(_selectedTiles[0]._coordinates, _selectedTiles[1]._coordinates) && _selectedTiles[0]._family == _selectedTiles[1]._family) {    
+      if (
+            pathToCheck.isPathValid(_selectedTiles[0]._coordinates, _selectedTiles[1]._coordinates) 
+            && _selectedTiles[0]._family == _selectedTiles[1]._family
+          ) 
+      {    
         _selectedTiles[0]._isVisible = false;
-        _selectedTiles[1]._isVisible = false;
-        printArray(pathToCheck._pointsDirectionSwitch);
+        _selectedTiles[1]._isVisible = false;        
         pathToCheck.drawLines(pathToCheck._pointsDirectionSwitch);
-        Tile[] newArray = new Tile[0];
-        _selectedTiles  = newArray;
+        Tile[] emptyArray = new Tile[0];
+        _selectedTiles  = emptyArray;
       }
       else {
         _selectedTiles[0]._isSelected = false;
         Tile newSelectedTile = _selectedTiles[1];
-        Tile[] newArray = new Tile[0];
-        _selectedTiles  = newArray;
+        Tile[] emptyArray = new Tile[0];
+        _selectedTiles  = emptyArray;
         _selectedTiles  = (Tile[]) append(_selectedTiles, newSelectedTile);
       }
 
     }
   
     for (Tile tile : _tiles) {
-      if (tile.isPressed()) {
-        
+      
+      if (tile.isPressed()) {  
         if (_selectedTiles.length == 0 && tile._isVisible) {
           _selectedTiles = (Tile[]) append(_selectedTiles, tile);
           tile._isSelected = true;
@@ -101,8 +104,8 @@ class Board {
           _selectedTiles   = (Tile[]) append(_selectedTiles, tile);
           tile._isSelected = true;   
         }
-        printArray(_selectedTiles);
       }
+      
       tile.displayTile();
     }
   }

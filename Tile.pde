@@ -50,7 +50,6 @@ class Tile {
  
  boolean isPressed() {
   if(isOverTile() && mouseButton == LEFT && isMouseReleased) {
-    println("Is pressed!");
     return true;
   }
    return false;   
