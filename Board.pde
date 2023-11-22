@@ -8,7 +8,6 @@ class Board {
   Tile[] _tiles;
   Tile[] _selectedTiles;
   int[]  _familyKey;
-  boolean _drawing;
   Path pathToCheck;
   
   
@@ -22,7 +21,6 @@ class Board {
     _tiles                             = new Tile[_nbTiles];
     _selectedTiles                     = new Tile[0];
     _familyKey                         = new int[_nbTiles];
-    _drawing                           = false;
     HashMap<Integer, PImage> _families = new HashMap<Integer, PImage>();
 
 
