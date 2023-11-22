@@ -8,7 +8,8 @@ class Board {
   Tile[] _tiles;
   Tile[] _selectedTiles;
   int[]  _familyKey;
-
+  boolean _drawing;
+  Path pathToCheck;
   
   
   Board(int boardWidth, int boardHeight) {
@@ -21,6 +22,7 @@ class Board {
     _tiles                             = new Tile[_nbTiles];
     _selectedTiles                     = new Tile[0];
     _familyKey                         = new int[_nbTiles];
+    _drawing                           = false;
     HashMap<Integer, PImage> _families = new HashMap<Integer, PImage>();
 
 
@@ -65,36 +67,11 @@ class Board {
  
  
  
-  void loopOverTiles() {
-  
-    if (_selectedTiles.length == 2) {
-      
-      Path pathToCheck = new Path(_selectedTiles[0], _selectedTiles[1]);
-          
-      if (
-            pathToCheck.isPathValid(_selectedTiles[0]._coordinates, _selectedTiles[1]._coordinates) 
-            && _selectedTiles[0]._family == _selectedTiles[1]._family
-          ) 
-      {    
-        _selectedTiles[0]._isVisible = false;
-        _selectedTiles[1]._isVisible = false;        
-        pathToCheck.drawLines(pathToCheck._pointsDirectionSwitch);
-        Tile[] emptyArray = new Tile[0];
-        _selectedTiles  = emptyArray;
-      }
-      else {
-        _selectedTiles[0]._isSelected = false;
-        Tile newSelectedTile = _selectedTiles[1];
-        Tile[] emptyArray = new Tile[0];
-        _selectedTiles  = emptyArray;
-        _selectedTiles  = (Tile[]) append(_selectedTiles, newSelectedTile);
-      }
-
-    }
-  
-    for (Tile tile : _tiles) {
-      
-      if (tile.isPressed()) {  
+ 
+  void displayTiles() {
+    for (Tile tile : _tiles) {     
+      if (tile.isPressed()) {
+        
         if (_selectedTiles.length == 0 && tile._isVisible) {
           _selectedTiles = (Tile[]) append(_selectedTiles, tile);
           tile._isSelected = true;
@@ -104,10 +81,9 @@ class Board {
           _selectedTiles   = (Tile[]) append(_selectedTiles, tile);
           tile._isSelected = true;   
         }
-      }
-      
+        
+      }   
       tile.displayTile();
-    }
+    } 
   }
- 
 }
