@@ -14,19 +14,6 @@ class Path {
   
   
   
-  void drawLines(PVector[] arrPoints) {
-    stroke(0);
-    strokeWeight(6);
-    float halfWidthTile = iBoard._widthTile/2;
-    float halfHeightTile = iBoard._heightTile/2;
-    for (int i = 0; i < _pointsDirectionSwitch.length - 1; i++) {
-      PVector pointToReach = new PVector(arrPoints[i+1].x * iBoard._widthTile + halfWidthTile, arrPoints[i+1].y * iBoard._heightTile + halfHeightTile);
-      line(arrPoints[i].x * iBoard._widthTile + halfWidthTile, arrPoints[i].y * iBoard._heightTile + halfHeightTile, pointToReach.x, pointToReach.y);
-    } 
-  }
-  
-  
-  
   //Parcours l'axe vertical en montant depuis la tuile1 jusqu'à la ligne numéro pointY
   void moveUp(float startPoint, float endPoint, float xyCoordToCheck, BooleanWrapper pathIsValid, BooleanWrapper moveIsValid) {
         PVector coordToCheck = new PVector();
