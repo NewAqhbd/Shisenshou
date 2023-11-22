@@ -26,11 +26,8 @@ class Tile {
  void displayTile() {
    stroke(0);
    strokeWeight(2);
-   if(_isVisible == true) {
-     if(isOverTile()) {
-       strokeWeight(4);
-     }
-     if(_isSelected == true)
+   if(_isVisible) {
+     if(_isSelected)
        stroke(255,0,0);
      image(_img, _coordinates.x * _widthSize, _coordinates.y * _heightSize, _widthSize, _heightSize);
      noFill();

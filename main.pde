@@ -2,19 +2,17 @@ boolean isMouseReleased = false;
 PImage img1, img2, img3, img4, img5, img6, img7;
 Board iBoard;
 int startTime;
-boolean _drawing;
-boolean _toDisplay;
+boolean drawing;
+boolean toDisplay;
 Path pathToCheck;
-boolean _toDisplayOnce;
+
 void setup() {
   size(1000, 800);
   frameRate(60);
   PImage titleBarIcon = loadImage("assets/shisenshou-logo.png");
   surface.setIcon(titleBarIcon);
   iBoard = new Board(18, 8); //<>//
-  _drawing = false;
-  _toDisplay = true;
-  _toDisplayOnce = false;
+  drawing = false;
 }
 
 
@@ -35,15 +33,16 @@ void draw() {
         ) 
     {    
 
-      if (!_drawing) {
+      if (!drawing) {
         startTime = millis();
       }
         
       if (millis() - startTime < 1000) {
-        _drawing = true;
+        drawing = true;
         drawLines(pathToCheck._pointsDirectionSwitch);
       }  
       else {
+        drawing = false;
         iBoard._selectedTiles[0]._isVisible = false;
         iBoard._selectedTiles[1]._isVisible = false; 
         Tile[] emptyArray = new Tile[0];
@@ -66,7 +65,7 @@ void draw() {
 
 void mouseClicked() {
   loop();
-  _toDisplay = true;
+  toDisplay = true;
   isMouseReleased = true;
 
 }
